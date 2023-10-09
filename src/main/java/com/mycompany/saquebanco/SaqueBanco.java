@@ -2,33 +2,35 @@ package com.mycompany.saquebanco;
 import java.util.Scanner;
 
 public class SaqueBanco {
-    // Declaração de Variáveis de instância
+    // Declaração de Variáveis
+    private float saldoAtual;
     private float saldoAnterior;
     private float valorSaque;
-    private float saldoAtual;
     
     public static void main(String[] args) {
-        // Instancia a Classe Scanner
-        Scanner sc = new Scanner(System.in);
-
-        // Instancia a Classe SaqueBanco
-        SaqueBanco saqueBanco = new SaqueBanco();
-
-        // Capturar Dados
-        System.out.println("\n----------SAQUE BANCO----------\n");
-        System.out.print("Digite o seu Salário: ");
-        saqueBanco.saldoAnterior = sc.nextFloat();
-        System.out.print("Digite o quanto você quer sacar: ");
-        saqueBanco.valorSaque = sc.nextFloat();
-
+        // Instanciar a Classe Banco
+        SaqueBanco banco = new SaqueBanco();
+        
+        // Instanciar a Classe Scanner
+        Scanner scanner = new Scanner(System.in);
+        
+        // Capturar os Dados
+        System.out.println("\n---------- BANCO ----------\n");
+        System.out.print("\nDigite o seu Salario: ");
+        banco.saldoAtual = scanner.nextFloat();
+        System.out.print("\nDigite o valor do Saque: ");
+        banco.valorSaque = scanner.nextFloat();
+        
         // Realiza o Saque
-        if (saqueBanco.valorSaque <= saqueBanco.saldoAnterior) {
-            saqueBanco.saldoAtual = saqueBanco.saldoAnterior - saqueBanco.valorSaque;
-            System.out.println("\nO seu Saldo Anterior era: " + saqueBanco.saldoAnterior +" R$");
-            System.out.println("O seu Saldo Atual é: " + saqueBanco.saldoAtual + " R$");
-        } else {
+        if(banco.valorSaque <= banco.saldoAtual){
+            banco.saldoAtual -= banco.valorSaque;
+            banco.saldoAnterior = banco.saldoAtual + banco.valorSaque;
+            System.out.println("\nTransação bem sucedida!!!\n");
+            System.out.println("O Valor do Saque foi: " + banco.valorSaque + " R$");
+            System.out.println("O Valor Atual é: " + banco.saldoAtual + " R$");
+            System.out.println("O Valor Anterior era: " + banco.saldoAnterior + " R$");
+        }else{
             System.out.println("\nSaldo Insuficiente!!!");
         }
-        System.out.println("\n---------- FIM ----------");
     }
 }
